@@ -1,0 +1,1 @@
+This is a spell checker I wrote in python. It reads a file of words (dict.txt), and then prompts the user for an input file to check the spelling of.
