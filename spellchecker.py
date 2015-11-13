@@ -7,13 +7,22 @@ import string
 
 # this reads the dictionary and returns an array of words
 def readDictionary():
-    dictionary = open("dict.txt")
+    dictionary = None
+    try:
+        dictionary = open("dict.txt")
+    except:
+        print("Dictionary not found. Initializing new dictionary.")
+        dictionary = open("dict.txt", "w+")
+        dictionary.close()
+        #only open in read mode
+        dictionary = open("dict.txt")
     words = []
     for line in dictionary:
         words.append(line.strip().lower())
     dictionary.close()
     return words
 
+#this gets the file name from the user
 def getFileName():
     inputFileName = raw_input("Filename?  ")
     while (not checkForFile(inputFileName)):
@@ -31,7 +40,6 @@ def readFile(inputFileName):
         for word in line.strip().translate(None, punctuation).split():
             words.append(word)
     return words
-        
 
 #this tries to open a file to see if it exists
 def checkForFile(fileName):
@@ -101,5 +109,6 @@ def main():
             addWords(fixWords)
         go = getOption("yn", "Run program again? (y/n)  ")
 
+#3 2 1 go
 if __name__ == "__main__":
     main()
