@@ -57,7 +57,7 @@ def getMisspelled(dictionary, words):
 def getFixWords(words):
     fix = []
     for word in words:
-        prompt = "Misspelled word: %s. Fix? (y/n)  " %word
+        prompt = "Misspelled word: %s. Add? (y/n)  " %word
         option = getOption("yn", prompt)
         if option == 'y':
             fix.append(word)
@@ -82,20 +82,24 @@ def addWords(words):
 def main():
     #read the dictionary
     dictionary = readDictionary()
-    #get the file name
-    fileName = getFileName()
-    #get the words from the file that the user wants checked
-    fileWords = readFile(fileName)
-    #get the misspelled words
-    misspelled = getMisspelled(dictionary, fileWords)
-    #work with user about the misspelled words
-    fixWords = getFixWords(misspelled)
-    #add words to the dictionary
-    if (len(fixWords) > 0):
-        addWords(fixWords)
-
-    if (getOption("yn", "Run program again? (y/n)  ") == 'y'):
-        main()
+    
+    #do the following as many times as the user wants
+    go = 'y'
+    while (go == 'y'):
+        #get the file name
+        fileName = getFileName()
+        #get the words from the file that the user wants checked
+        fileWords = readFile(fileName)
+        #get the misspelled words
+        misspelled = getMisspelled(dictionary, fileWords)
+        #work with user about the misspelled words
+        fixWords = getFixWords(misspelled)
+        #add words to the dictionary
+        if (len(fixWords) > 0):
+            for word in fixWords:
+                dictionary.append(word)
+            addWords(fixWords)
+        go = getOption("yn", "Run program again? (y/n)  ")
 
 if __name__ == "__main__":
     main()
