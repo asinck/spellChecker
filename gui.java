@@ -1,22 +1,21 @@
 import java.awt.*;
 import java.awt.event.*;
-//import java.awt.Frame;
+
 
 public class gui extends Frame implements ActionListener {
     private int currentNumber = 1;
     private Label label;
     private Button btn;
     private Button closeButton;
+
+    //start everything
     public static void main(String[] args) {
         gui muGui = new gui();
     }
 
+    //the constructor
     public gui() {
         setLayout(new FlowLayout());
-        
-/*        Panel panel = new Panel();
-        Button btn = new Button("press here");
-        panel.add(btn);*/
 
         label = new Label("number: 1");
         add(label);
@@ -29,15 +28,14 @@ public class gui extends Frame implements ActionListener {
         setVisible(true);
 
         closeButton = new Button("Close");
-        //closeButton.addActionListener(new CloseListener());
         closeButton.addActionListener(this);
         add(closeButton);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    //this does the actions
     @Override
     public void actionPerformed(ActionEvent evt) {
+        //command gets the text of the button
         String command = evt.getActionCommand();
         if (command.equals("Close")) {
             System.exit(0);
@@ -50,9 +48,3 @@ public class gui extends Frame implements ActionListener {
 
 
 }
-// class CloseListener implements ActionListener {
-//     @Override
-//     public void actionPerformed(ActionEvent e) {
-//         System.exit(0);
-//     }
-// }
