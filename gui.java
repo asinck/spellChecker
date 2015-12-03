@@ -10,7 +10,7 @@ public class gui extends Frame implements ActionListener {
 
     //start everything
     public static void main(String[] args) {
-        gui muGui = new gui();
+        gui myGui = new gui();
     }
 
     //the constructor
