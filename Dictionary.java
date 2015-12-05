@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.File;
+import java.io.*;// File;
 
 /**
  * This class will store the dictionary in an ArrayList.
@@ -17,26 +17,34 @@ public class Dictionary {
      * This is the constructor for the class. It initializes
      * wordList.
      */
-    public Dictionary () {
+    public Dictionary () throws FileNotFoundException {
         //this assumes that the filename for the dictionary is
         //always the same
         /* for each word in the dictionary {
-               add that word to wordList
+           add that word to wordList
            }
-         */
+        */
 
-		//Create new dictionary file if it does not exist
-		File dict = new File("dictionary.txt");
-		if(!dict.exists()) {
-		    dict.createNewFile();
-		}
+        //Create new dictionary file if it does not exist
+        File dict = new File("dictionary.txt");
+        if(!dict.exists()) {
+            try {
+                dict.createNewFile();
+            }
+            catch (FileNotFoundException e) {
+                System.out.println("File not found");
+            }
+            catch (IOException e) {
+                System.out.println("Program Error.");
+            }
+        }
 
-		//Read dictionary file into wordList
+        //Read dictionary file into wordList
         Scanner input = new Scanner(new File("dictionary.txt"));
-		while (input.hasNextLine()){
-		    wordList.add(input.next());
-		}
-		input.close();
+        while (input.hasNextLine()){
+            wordList.add(input.next());
+        }
+        input.close();
     }
 
     /**
