@@ -5,13 +5,15 @@ import java.io.*;// File;
 /**
  * This class will store the dictionary in an ArrayList.
  */
+
 public class Dictionary {
+
 
     /**
      * This has the dictionary
      */
 
-	private ArrayList<String> wordList = new ArrayList<String>();
+	private ArrayList<String> wordList;
 
     /**
      * This is the constructor for the class. It initializes
@@ -24,7 +26,8 @@ public class Dictionary {
            add that word to wordList
            }
         */
-
+		
+		
         //Create new dictionary file if it does not exist
         File dict = new File("dictionary.txt");
         if(!dict.exists()) {
@@ -40,11 +43,12 @@ public class Dictionary {
         }
 
         //Read dictionary file into wordList
-        Scanner input = new Scanner(new File("dictionary.txt"));
-        while (input.hasNextLine()){
-            wordList.add(input.next());
-        }
-        input.close();
+        	Scanner input = new Scanner(new File("dictionary.txt"));
+        	wordList = new ArrayList<String>();
+            while (input.hasNextLine()){
+                wordList.add(input.next());
+            }
+            input.close();
     }
 
     /**
@@ -60,28 +64,26 @@ public class Dictionary {
     */
     public int search (String word) {
 		int start = 0;
-		int end = wordList.size();
+		int end = wordList.size()-1;
 		int index = 0;
+		int pivot = 0;
 
 		//binary search
 		while(start <= end){
-			int pivot = start + ((end - start)/2);
+			pivot = start + ((end - start)/2);
 
-			if (word.compareTo(wordList.get(pivot)) < 0){
-				end = pivot;
-				//keep track of return index position
-				index = pivot - 1;
-			}
-			else if (word.compareTo(wordList.get(pivot)) > 0){
-				start = pivot;
-				//keep track of return index position
-				index = pivot + 1;
-			}
+			if (word.compareTo(wordList.get(pivot)) < 0)
+				end = index = pivot - 1;
+			else if (word.compareTo(wordList.get(pivot)) > 0)
+				start = index = pivot + 1;
 			else
 				return -1;
 		}
-
-		return index;
+		//Adjust index if out of bounds
+		if (index < 0)
+			return 0;
+		else
+			return index;
     }
 
     /**
@@ -95,4 +97,70 @@ public class Dictionary {
         if (index != -1)
         	wordList.add(index, word);
     }
+    
+    /**
+     * This will update the file "dictionary.txt" 
+     * with the arrayList wordList.
+    */
+    public void update() {
+    	try{
+    		PrintWriter output = new PrintWriter("dictionary.txt");
+    		int i;
+    		//Print each word of the arrayList on a new line in "dictionary.txt"
+    		for(i = 0; i < wordList.size() - 1; i++){
+    			output.println(wordList.get(i));
+    		}
+    		//Print the last word without a new line after
+    		output.print(wordList.get(i));
+    		output.close();
+    	}
+    	catch (IOException e){
+    		System.out.print("Failed to generate file!");
+    	}
+
+	}
+    /*
+     * Main method for Testing
+     * Comment out when adding to program
+     */
+    
+    /*
+    public static void main(String args[]){
+				try {
+					//Create new Dictionary
+					Dictionary aDict = new Dictionary();
+					/*
+					//Add new words to blank dictionary
+					aDict.add("apple");
+					aDict.add("bear");
+					aDict.add("cat");
+					aDict.add("dad");
+					aDict.add("dog");
+					aDict.add("elephant");
+					aDict.add("eyeball");*/
+					
+					//Check that arraylist size is correct
+					System.out.println("Array size: " + aDict.wordList.size());
+					System.out.println("\n" + aDict.wordList.toString());
+
+					//Search for valid word "bear"
+					System.out.println( "Search bear returns : " + aDict.search("bear"));
+					//Search for invalid word "fly"
+					System.out.println( "Search fly returns : " + aDict.search("fly"));
+					//Add duplicate word to dictionary
+					aDict.add("bear");
+					//Add new word to dictionary
+					aDict.add("fly");
+					System.out.println("\nAdd fly: " + aDict.wordList.toString());
+					
+					//Update dictionary file
+					aDict.update();
+				} catch (FileNotFoundException e) {
+					System.out.println("File not found in Main method");
+				}
+				
+				
+	}
+    */
 }
+
