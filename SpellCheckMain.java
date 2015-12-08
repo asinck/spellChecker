@@ -1,14 +1,29 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- * Created by Cody on 12/3/15.
+ * Created by Cody on 12/3/15. Hello friends
  */
 public class SpellCheck {
     private ArrayList<String> misspelledWords;
     private ArrayList<String> addedWords;
     private int counter;
     private Scanner fileReader;
-    Dictionary dictionary;
+
+    public static void main(String[]args){
+        Dictionary dictionary = new Dictionary();
+        SpellCheckerGui myGui = new SpellCheckerGui();
+    }
+
+    public ArrayList<String> textConvert(String fileName){
+        fileReader = new Scanner(new File(fileName));
+        ArrayList<String> convertedFile;
+        int iterator = 0;
+        while(fileReader.hasNext()){
+            String word = fileReader.next().removePunct();
+            convertedFile.add(iterator, word);
+        }
+    }
 
     /**
      * Assuming the "int search(String)" method of dictionary returns -1 for an existing word, this method will
@@ -33,9 +48,9 @@ public class SpellCheck {
      * @param inputWord A single word from the array
      * @return the lower case, punctuation-free word
      */
-    private String removePunct(String inputWord){
+    private static String removePunct(String inputWord){
         String currentWord = inputWord.replaceAll("[^a-zA-Z ]", "").toLowerCase();
         return currentWord;
     }
-    
+
 }
