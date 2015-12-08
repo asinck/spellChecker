@@ -69,9 +69,9 @@ public class Dictionary {
 		while(start <= end){
 			pivot = start + ((end - start)/2);
 
-			if (word.compareTo(wordList.get(pivot)) < 0)
+			if (word.compareToIgnoreCase(wordList.get(pivot)) < 0)
 				end = index = pivot - 1;
-			else if (word.compareTo(wordList.get(pivot)) > 0)
+			else if (word.compareToIgnoreCase(wordList.get(pivot)) > 0)
 				start = index = pivot + 1;
 			else
 				return -1;
