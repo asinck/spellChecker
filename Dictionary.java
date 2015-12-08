@@ -137,7 +137,7 @@ public class Dictionary {
 					aDict.add("dad");
 					aDict.add("dog");
 					aDict.add("elephant");
-					aDict.add("eyeball");*/
+					aDict.add("eyeball");
 					
 					//Check that arraylist size is correct
 					System.out.println("Array size: " + aDict.wordList.size());
