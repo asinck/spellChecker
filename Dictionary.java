@@ -34,9 +34,6 @@ public class Dictionary {
             try {
                 dict.createNewFile();
             }
-            catch (FileNotFoundException e) {
-                System.out.println("File not found");
-            }
             catch (IOException e) {
                 System.out.println("Program Error.");
             }
@@ -124,43 +121,39 @@ public class Dictionary {
      * Comment out when adding to program
      */
     
-    /*
-    public static void main(String args[]){
-				try {
-					//Create new Dictionary
-					Dictionary aDict = new Dictionary();
-					/*
-					//Add new words to blank dictionary
-					aDict.add("apple");
-					aDict.add("bear");
-					aDict.add("cat");
-					aDict.add("dad");
-					aDict.add("dog");
-					aDict.add("elephant");
-					aDict.add("eyeball");
-					
-					//Check that arraylist size is correct
-					System.out.println("Array size: " + aDict.wordList.size());
-					System.out.println("\n" + aDict.wordList.toString());
-
-					//Search for valid word "bear"
-					System.out.println( "Search bear returns : " + aDict.search("bear"));
-					//Search for invalid word "fly"
-					System.out.println( "Search fly returns : " + aDict.search("fly"));
-					//Add duplicate word to dictionary
-					aDict.add("bear");
-					//Add new word to dictionary
-					aDict.add("fly");
-					System.out.println("\nAdd fly: " + aDict.wordList.toString());
-					
-					//Update dictionary file
-					aDict.update();
-				} catch (FileNotFoundException e) {
-					System.out.println("File not found in Main method");
-				}
-				
-				
-	}
-    */
+//    public static void main(String args[]){
+//				try {
+//					//Create new Dictionary
+//					Dictionary aDict = new Dictionary();
+//					
+//					//Add new words to blank dictionary
+//					aDict.add("apple");
+//					aDict.add("bear");
+//					aDict.add("cat");
+//					aDict.add("dad");
+//					aDict.add("dog");
+//					aDict.add("elephant");
+//					aDict.add("eyeball");
+//					
+//					//Check that arraylist size is correct
+//					System.out.println("Array size: " + aDict.wordList.size());
+//					System.out.println("\n" + aDict.wordList.toString());
+//					//Search for valid word "bear"
+//					System.out.println( "Search bear returns : " + aDict.search("bear"));
+//					//Search for invalid word "fly"
+//					System.out.println( "Search fly returns : " + aDict.search("fly"));
+//					//Add duplicate word to dictionary
+//					aDict.add("bear");
+//					//Add new word to dictionary
+//					aDict.add("fly");
+//					System.out.println("\nAdd fly: " + aDict.wordList.toString());
+//					
+//					//Update dictionary file
+//					aDict.update();
+//				} catch (FileNotFoundException e) {
+//					System.out.println("File not found in Main method");
+//				}
+//				
+//				
+//	}
 }
-
