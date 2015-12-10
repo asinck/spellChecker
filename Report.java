@@ -56,7 +56,8 @@ public class Report {
             try {
                 String name = fileName;
                 name = name.replaceAll(".txt", "");
-                PrintWriter output = new PrintWriter(name + ".txt");
+                name += ".txt";
+                PrintWriter output = new PrintWriter(name);
                 int index;
                 //Print each word of the arrayList on a new line in "dictionary.txt"
                 for(index = 0; index < words.size() - 1; index++){
@@ -70,6 +71,22 @@ public class Report {
                 System.out.print("Fail to generate file.");
             }
         }
+        else {
+            String name = fileName;
+            name = name.replaceAll(".txt", "");
+            name += ".txt";
+            File myFile = new File(name);
+            if(!myFile.exists()) {
+                try {
+                    myFile.createNewFile();
+                }
+                catch (IOException e) {
+                    System.out.print("Error: Program was not able to create ");
+                    System.out.println("a dictionary file.");
+                }
+            }
+        }
+        
     }
         
     /**
