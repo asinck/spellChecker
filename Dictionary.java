@@ -21,7 +21,7 @@ public class Dictionary {
      * This is the constructor for the class. It initializes
      * wordList.
      */
-    public Dictionary () throws FileNotFoundException {
+    public Dictionary() throws FileNotFoundException {
         //this assumes that the filename for the dictionary is
         //always the same
         File dict = new File("dictionary.txt");
@@ -59,7 +59,7 @@ public class Dictionary {
      * allow this function to indicate if the word is in the
      * dictionary or not.
      */
-    public int search (String word) {
+    public int search(String word) {
         int start = 0;
         int end = wordList.size() - 1;
         int index = 0;
@@ -67,7 +67,7 @@ public class Dictionary {
         
         //binary search
         while (start <= end) {
-            pivot = start + ((end - start)/2);
+            pivot = start + ((end - start) / 2);
             String currentWord = wordList.get(pivot);
             int compare = word.compareTo(currentWord);
             if (compare < 0) {
@@ -90,7 +90,7 @@ public class Dictionary {
      *
      * @param word, the word to insert
      */
-    public void add (String word) {
+    public void add(String word) {
         int index = search(word);
         //Check for valid index before adding word to wordList
         if (index != -1) {
