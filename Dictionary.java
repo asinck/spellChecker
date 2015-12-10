@@ -45,7 +45,6 @@ public class Dictionary {
             wordList.add(input.next());
         }
         input.close();
-        
     }
 
     /**
