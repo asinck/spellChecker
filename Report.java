@@ -8,7 +8,6 @@ import java.io.*;
 public class Report {
     /*        
     String fileName;
-
     /**
      * This is the constructor
      * @param name : the name that requires user to type in 
@@ -53,26 +52,23 @@ public class Report {
      * @param words: the ArrayList of the words to put in the file
      */
     public void createFile(String fileName, ArrayList<String> words) {
-        try {
-            String name = fileName;
-            int begin = fileName.length() - 5;
-            int end = fileName.length()-1;
-            String tail = fileName.substring(begin, end);
-            if (tail.equals(".txt")) {
-                name = fileName.substring(0, begin);
+        if (words.size() > 0) {
+            try {
+                String name = fileName;
+                name = name.replaceAll(".txt", "");
+                PrintWriter output = new PrintWriter(name + ".txt");
+                int index;
+                //Print each word of the arrayList on a new line in "dictionary.txt"
+                for(index = 0; index < words.size() - 1; index++){
+                    output.println(words.get(index));
+                }
+                //Print the last word without a new line after
+                output.print(words.get(index));
+                output.close();
             }
-            PrintWriter output = new PrintWriter(fileName + ".txt");
-            int index;
-            //Print each word of the arrayList on a new line in "dictionary.txt"
-            for(index = 0; index < words.size() - 1; index++){
-                output.println(words.get(index));
+            catch (IOException e) {
+                System.out.print("Fail to generate file.");
             }
-            //Print the last word without a new line after
-            output.print(words.get(index));
-            output.close();
-        }
-        catch (IOException e) {
-            System.out.print("Fail to generate file.");
         }
     }
         
