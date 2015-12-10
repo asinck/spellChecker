@@ -69,14 +69,13 @@ public class Dictionary {
         while (start <= end) {
             pivot = start + ((end - start)/2);
             String currentWord = wordList.get(pivot);
-            int compare = word.compareToIgnoreCase(currentWord);
+            int compare = word.compareTo(currentWord);
             if (compare < 0) {
                 end = pivot - 1;
-                index = end;
+                index = pivot;
             }
             else if (compare > 0) {
-                start = pivot + 1;
-                index = start;
+                start = index = pivot + 1;
             }
             else {
                 index = -1;
