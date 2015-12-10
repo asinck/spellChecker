@@ -120,6 +120,8 @@ public class SpellCheckerGui extends Frame implements ActionListener {
             userInteractionFrame.setVisible(false);
             notificationsLabel.setText("Done Checking.");
             update();
+            misspelledWords.clear();
+            addedWords.clear();
         }
         else {
             misspelledWordLabel.setText(wordList.get(0));
@@ -146,7 +148,7 @@ public class SpellCheckerGui extends Frame implements ActionListener {
                 myWindow.add(notificationsLabel);
             }
             else if (wordList.isEmpty()) {
-                notificationsLabel.setText("File is empty.");
+                notificationsLabel.setText("No misspelled words.");
                 myWindow.add(notificationsLabel);
             }
             else {
