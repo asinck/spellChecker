@@ -66,17 +66,17 @@ public class Dictionary {
         int pivot = 0;
         
         //binary search
-        System.out.println("looking for " + word + " in " + wordList);
         while (start <= end) {
             pivot = start + ((end - start)/2);
             String currentWord = wordList.get(pivot);
-            System.out.println(currentWord + " " + pivot + " " + start + " " + end);
             int compare = word.compareToIgnoreCase(currentWord);
             if (compare < 0) {
-                end = index = pivot - 1;
+                end = pivot - 1;
+                index = end;
             }
             else if (compare > 0) {
-                start = index = pivot + 1;
+                start = pivot + 1;
+                index = start;
             }
             else {
                 index = -1;
