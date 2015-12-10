@@ -69,7 +69,7 @@ public class Dictionary {
         else {
             while (start <= end) {
                 pivot = start + ((end - start)/2);
-                System
+                
                 String currentWord = wordList.get(pivot);
                 int compare = word.compareToIgnoreCase(currentWord);
                 if (compare < 0) {
