@@ -1,14 +1,20 @@
+/**
+ * @author Matthew McManamon, Cody Morrow, Adam Sinck, and Yao Zhou
+ * 
+ * This program will store the dictionary in an ArrayList.
+ * 
+ * This program will open the file "dictionary.txt" and put all the
+ * words in the file into the wordList. This program implements
+ * functions for a binary search of the dictionary, adding a word into
+ * the dictionary such that the dictionary remains in sorted order,
+ * and a function for updating the dictionary file.
+ */
+
 import java.util.*;
 import java.io.*;
 
-/**
- * This class will store the dictionary in an ArrayList.
- */
-
 public class Dictionary {
-    /**
-     * This has the dictionary
-     */
+    //this will have the dictionary
     public ArrayList<String> wordList;
 
     /**
@@ -21,7 +27,7 @@ public class Dictionary {
         File dict = new File("dictionary.txt");
         wordList = new ArrayList<String>();
         
-        //Create new dictionary file if it does not exist
+        //create new dictionary file if it does not exist
         if(!dict.exists()) {
             try {
                 dict.createNewFile();
@@ -32,7 +38,7 @@ public class Dictionary {
             }
         }
         
-        //Read dictionary file into wordList        
+        //read dictionary file into wordList
         Scanner input = new Scanner(new File("dictionary.txt"));
         wordList = new ArrayList<String>();
         while (input.hasNext()){
@@ -55,30 +61,30 @@ public class Dictionary {
      */
     public int search (String word) {
         int start = 0;
-        int end = wordList.size()-1;
+        int end = wordList.size() - 1;
         int index = 0;
         int pivot = 0;
-
+        
         //binary search
-        while (start <= end) {
-            pivot = start + ((end - start)/2);
-            String currentWord = wordList.get(pivot);
-            int compare = word.compareToIgnoreCase(currentWord);
-            if (compare < 0) {
-                end = index = pivot - 1;
-            }
-            else if (compare > 0) {
-                start = index = pivot + 1;
-            }
-            else {
-                return -1;
+        else {
+            while (start <= end) {
+                pivot = start + ((end - start)/2);
+                System
+                String currentWord = wordList.get(pivot);
+                int compare = word.compareToIgnoreCase(currentWord);
+                if (compare < 0) {
+                    end = index = pivot - 1;
+                }
+                else if (compare > 0) {
+                    start = index = pivot + 1;
+                }
+                else {
+                    index = -1;
+                    start = end + 1;
+                }
             }
         }
-        //Adjust index if out of bounds
-        if (index < 0)
-            return 0;
-        else
-            return index;
+        return index;
     }
 
     /**
@@ -95,8 +101,8 @@ public class Dictionary {
     }
     
     /**
-     * This will update the file "dictionary.txt" 
-     * with the arrayList wordList.
+     * This will update the file "dictionary.txt" with the arrayList
+     * wordList.
      */
     public void update() {
         try {
@@ -115,47 +121,4 @@ public class Dictionary {
         }
 
     }
-    /*
-     * Main method for Testing
-     * Comment out when adding to program
-     */
-/*
-    public static void main(String args[]){
-        try {
-            //Create new Dictionary
-            Dictionary aDict = new Dictionary();
-            
-            //Add new words to blank dictionary
-            aDict.add("apple");
-            aDict.add("bear");
-            aDict.add("cat");
-            aDict.add("dad");
-            aDict.add("dog");
-            aDict.add("elephant");
-            aDict.add("eyeball");
-            
-            //Check that arraylist size is correct
-            System.out.println("Array size: " + aDict.wordList.size());
-            System.out.println("\n" + aDict.wordList.toString());
-            //Search for valid word "bear"
-            System.out.println( "Search bear returns : " + aDict.search("bear"));
-            //Search for invalid word "fly"
-            System.out.println( "Search fly returns : " + aDict.search("fly"));
-            //Add duplicate word to dictionary
-            aDict.add("bear");
-            //Add new word to dictionary
-            aDict.add("fly");
-            System.out.println("\nAdd fly: " + aDict.wordList.toString());
-            
-            //Update dictionary file
-            aDict.update();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("File not found in Main method");
-        }
-        
-        
-    }
-    
-    */
 }
