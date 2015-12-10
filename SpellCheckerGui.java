@@ -90,6 +90,11 @@ public class SpellCheckerGui extends Frame implements ActionListener {
         fileFinderFrame.add(inputFileEntryForm);
         fileFinderFrame.add(selectFileButton);
 
+        userInteractionFrame.add(misspelledWordLabel);
+        userInteractionFrame.add(new Label(""));
+        userInteractionFrame.add(addButton);
+        userInteractionFrame.add(ignoreButton);
+        
         myWindow.add(fileFinderFrame);
         myWindow.add(notificationsLabel);
         myWindow.add(userInteractionFrame);
@@ -109,9 +114,9 @@ public class SpellCheckerGui extends Frame implements ActionListener {
         }
         wordList.remove(0);
         if (wordList.isEmpty()) {
-            userInteractionFrame.remove(addButton);
-            userInteractionFrame.remove(ignoreButton);
-            userInteractionFrame.remove(misspelledWordLabel);
+            // userInteractionFrame.remove(addButton);
+            // userInteractionFrame.remove(ignoreButton);
+            // userInteractionFrame.remove(misspelledWordLabel);
             userInteractionFrame.setVisible(false);
             notificationsLabel.setText("Done Checking.");
             update();
@@ -147,10 +152,10 @@ public class SpellCheckerGui extends Frame implements ActionListener {
             else {
                 notificationsLabel.setText("Misspelled word:");
                 misspelledWordLabel.setText(wordList.get(0));
-                userInteractionFrame.add(misspelledWordLabel);
-                userInteractionFrame.add(new Label(""));
-                userInteractionFrame.add(addButton);
-                userInteractionFrame.add(ignoreButton);
+                // userInteractionFrame.add(misspelledWordLabel);
+                // userInteractionFrame.add(new Label(""));
+                // userInteractionFrame.add(addButton);
+                // userInteractionFrame.add(ignoreButton);
 //                myWindow.add(userInteractionFrame);
                 userInteractionFrame.setVisible(true);
 
