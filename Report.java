@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.System;
 import java.io.*;
 
 /**
@@ -56,7 +57,7 @@ public class Report {
             try {
                 String name = fileName;
                 name = name.replaceAll(".txt", "");
-                name += ".txt";
+                name += "-" + System.currentTimeMillis() + ".txt";
                 PrintWriter output = new PrintWriter(name);
                 int index;
                 //Print each word of the arrayList on a new line in "dictionary.txt"
@@ -74,7 +75,7 @@ public class Report {
         else {
             String name = fileName;
             name = name.replaceAll(".txt", "");
-            name += ".txt";
+            name += "-" + System.currentTimeMillis() + ".txt";
             File myFile = new File(name);
             if(!myFile.exists()) {
                 try {
