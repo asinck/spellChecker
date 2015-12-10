@@ -1,37 +1,32 @@
+/**
+ * @author Matthew McManamon, Cody Morrow, Adam Sinck, and Yao Zhou
+ * 
+ * This program supports the spell checking java files. It will handle
+ * generating the files for the user after the words are processed.
+ */
+
 import java.util.ArrayList;
 import java.lang.System;
 import java.io.*;
 
-/**
- * This class will handle generating the files for the user after the words are
- * processed.
- */
 public class Report {
-    /*        
-    String fileName;
+
     /**
-     * This is the constructor
-     * @param name : the name that requires user to type in 
-     *                      
-     * /
+     * This is the constructor for the class. It's the most boring
+     * constructor ever written.
+     */
+    public Report() {}
     
-    public Report(String name){
-        fileName = name;
-    }
-    */        
-    public Report() {
-        
-    }
     /**
-     * This will take a list of words to add to the dictionary and
-     * an "addedwords" file, and a list of words to add to the "rejectedwords"
-     * file.
-     *
-     * @param addedWords: an ArrayList of the words that the user
-     * wants added to the dictionary
+     * This will take a file name and two arrayLists of words and
+     * generate output files for the user based on those two
+     * arrayLists.
      * 
-     * @param misspelledWords: an ArrayList of the words that the
-     * user didn't want to be added to the dictionary
+     * @param addedWords, an ArrayList of the words that the user
+     *        wants added to the dictionary
+     * @param misspelledWords, an ArrayList of the words that the user
+     *        didn't want to be added to the dictionary
+     * 
      */
     public void genReport(String fileName,
                           ArrayList<String> addedWords,
@@ -49,7 +44,7 @@ public class Report {
      * This will take a filename and an arraylist of words and create a file
      * with the words in the arraylist.
      *
-     * @param fileName: the name of the file to be created
+     * @param fileName: the base of the name of the file to be created
      * @param words: the ArrayList of the words to put in the file
      */
     public void createFile(String fileName, ArrayList<String> words) {
@@ -60,7 +55,6 @@ public class Report {
                 name += "-" + System.currentTimeMillis() + ".txt";
                 PrintWriter output = new PrintWriter(name);
                 int index;
-                //Print each word of the arrayList on a new line in "dictionary.txt"
                 for(index = 0; index < words.size() - 1; index++){
                     output.println(words.get(index));
                 }
@@ -69,7 +63,7 @@ public class Report {
                 output.close();
             }
             catch (IOException e) {
-                System.out.print("Fail to generate file.");
+                System.out.println("Failed to generate output file.");
             }
         }
         else {
@@ -82,34 +76,9 @@ public class Report {
                     myFile.createNewFile();
                 }
                 catch (IOException e) {
-                    System.out.print("Error: Program was not able to create ");
-                    System.out.println("a dictionary file.");
+                    System.out.println("Failed to generate output file.");
                 }
             }
         }
-        
     }
-        
-    /**
-     * This is the test main method, delete this method when use Report Class in spellChecker project
-     * 
-     */
-/*        
-    public static void main(String args[]){
-        ArrayList<String> testAdd = new ArrayList<String>();
-        testAdd.add("A");
-        testAdd.add("B");
-        testAdd.add("C");
-                
-        ArrayList<String> testRej = new ArrayList<String>();
-        testRej.add("Aa");
-        testRej.add("Bb");
-        testRej.add("cC");
-                
-        Report testRE = new Report("testReport");
-        testRE.genReport(testAdd,testRej);
-        //testRE.createFile("test",testAL);
-        System.out.print("Files have been generated successfully!");
-    }
-*/
 }
